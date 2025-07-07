@@ -1,0 +1,117 @@
+<!-- /partials/nav.html ★ Improved UI/UX -->
+<nav id="mainNav"
+     class="navbar navbar-expand-lg navbar-dark fixed-top bg-transparent py-3 transition">
+
+  <div class="container">
+
+    <!-- Brand – shorter on phones, full legal name ≥ lg -->
+    <a href="index.html" class="navbar-brand fw-semibold fs-5">
+      <span class="d-inline d-lg-none">Mast&nbsp;Master</span>
+      <span class="d-none d-lg-inline">
+        Mast&nbsp;Master&nbsp;&amp;&nbsp;Tower&nbsp;Construction&nbsp;Company&nbsp;Ltd
+      </span>
+    </a>
+
+    <!-- Toggler -->
+    <button class="navbar-toggler border-0 rounded-1 p-2 shadow-sm"
+            type="button" data-bs-toggle="collapse"
+            data-bs-target="#navMenu" aria-controls="navMenu"
+            aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Menu -->
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto gap-lg-3">
+        <li class="nav-item">
+          <a class="nav-link px-2 py-1 rounded active" href="index.html">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link px-2 py-1 rounded" href="about.html">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link px-2 py-1 rounded" href="services.html">Services</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link px-2 py-1 rounded" href="projects.html">Projects</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link px-2 py-1 rounded" href="safety.html">Safety</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link px-2 py-1 rounded" href="contact.html">Contact</a>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</nav>
+
+<style>
+/* Smooth transition for navbar height & background */
+.navbar {
+  transition: all 0.3s ease-in-out;
+}
+.navbar.scrolled {
+  background: rgba(214,40,40,0.9); /* Slightly transparent red */
+  backdrop-filter: blur(8px);
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+/* Nav links – hover effect and active state */
+.nav-link {
+  position: relative;
+  font-weight: 500;
+  color: #fff !important;
+  transition: color 0.3s ease;
+}
+.nav-link::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  background: #fff;
+  transition: width 0.3s;
+  margin-top: 2px;
+}
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+.nav-link.active {
+  color: var(--brand-gold) !important;
+}
+
+/* Navbar-toggler */
+.navbar-toggler {
+  border: none;
+  outline: none;
+}
+.navbar-toggler:focus {
+  box-shadow: none;
+}
+.navbar-toggler-icon {
+  filter: brightness(90%);
+}
+
+/* Mobile spacing for tap targets */
+@media (max-width: 991.98px) {
+  .navbar-nav .nav-link {
+    padding: 0.75rem 1rem;
+  }
+}
+</style>
+
+<script>
+/* Shrink navbar on scroll */
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('mainNav');
+  if (window.scrollY > 50) {
+    nav.classList.add('scrolled');
+  } else {
+    nav.classList.remove('scrolled');
+  }
+});
+</script>

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Our Services | Mast Master &amp; Tower Construction Co. Ltd</title>
+
+<!-- Bootstrap & Icons -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+<!-- Fonts, AOS & GLightbox -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" rel="stylesheet">
+
+<style>
+/* ─── Brand Palette ───────────────────────────────────────────── */
+:root{
+  --brand-red:#d62828;
+  --brand-red-light:#ec5050;
+  --brand-dark:#141414;
+  --brand-gold:#d4af37;
+}
+
+/* ─── Base ────────────────────────────────────────────────────── */
+body{
+  font-family:'Poppins',system-ui,sans-serif;
+  color:#333;
+  scroll-behavior:smooth;
+  min-width:320px;
+}
+
+/* ─── Navbar ──────────────────────────────────────────────────── */
+.navbar{
+  background:var(--brand-red);
+  transition:box-shadow .3s;
+}
+.navbar.scrolled{box-shadow:0 2px 6px rgba(0,0,0,.25)}
+
+/* ─── Section Titles & Buttons ───────────────────────────────── */
+.section-title{
+  color:var(--brand-red);
+  font-weight:700;
+  margin-bottom:2rem;
+  font-size:clamp(1.5rem, 1.2rem + 1vw, 2rem);
+}
+.gold-bar{
+  width:60px;
+  height:4px;
+  background:var(--brand-gold);
+  margin:0 auto 1rem;
+}
+.btn-brand{
+  background:var(--brand-red);
+  border-color:var(--brand-red);
+  color:#fff;
+}
+.btn-brand:hover{
+  background:var(--brand-red-light);
+  border-color:var(--brand-red-light);
+}
+
+/* ─── Hero ───────────────────────────────────────────────────── */
+.hero{
+  min-height:60vh;
+  background:url("images/services.jpg") center/cover no-repeat;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  color:#fff;
+  position:relative;
+}
+.hero::before{
+  content:"";
+  position:absolute; inset:0;
+  background:rgba(0,0,0,.55);
+  z-index:0;
+}
+.hero>*{position:relative; z-index:1}
+.hero h1{
+  font-size:clamp(2rem, 1.5rem + 2vw, 3rem);
+  line-height:1.15;
+}
+.hero .lead{
+  font-size:clamp(1rem, .9rem + .4vw, 1.25rem);
+}
+
+/* ─── Service Cards ─────────────────────────────────────────── */
+.service-card{
+  background:#fff;
+  border-radius:12px;
+  box-shadow:0 2px 6px rgba(0,0,0,.08);
+  padding:2rem;
+  text-align:center;
+  height:100%;
+  transition:transform .35s, box-shadow .35s;
+}
+@media (max-width:575.98px){
+  .service-card{padding:1.5rem}
+}
+.service-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 12px 24px rgba(0,0,0,.15);
+}
+.service-card i{
+  font-size:2rem;
+  color:var(--brand-red);
+}
+.service-card .divider{
+  height:3px; width:40px;
+  background:var(--brand-gold);
+  margin:1rem auto;
+}
+
+/* ─── Process Timeline ──────────────────────────────────────── */
+.timeline-step{position:relative; padding-left:42px}
+.timeline-step::before{
+  content:"";
+  position:absolute; left:18px; top:0;
+  height:100%; width:2px; background:var(--brand-gold);
+}
+.timeline-dot{
+  position:absolute; left:10px; top:4px;
+  width:18px; height:18px;
+  background:var(--brand-red); border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  color:#fff; font-size:.75rem;
+}
+
+/* ─── Footer ─────────────────────────────────────────────────── */
+footer{
+  background:var(--brand-dark);
+  color:#ddd;
+}
+footer a{text-decoration:none; color:#fff}
+
+/* ─── Back-to-Top ────────────────────────────────────────────── */
+#backTop{
+  position:fixed; bottom:24px; right:24px;
+  width:46px; height:46px; border:none; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  background:var(--brand-red); color:#fff;
+  box-shadow:0 4px 12px rgba(0,0,0,.3);
+  opacity:0; visibility:hidden; transition:.3s;
+  z-index:999;
+}
+#backTop.show{opacity:1; visibility:visible}
+</style>
+</head>
+<body>
+
+<!-- ▼ Header (navbar) injected at runtime -->
+<div id="header-placeholder"></div>
+
+<!-- ─── Hero Banner ──────────────────────────────────────────── -->
+<header class="hero">
+  <div class="container" data-aos="fade-down">
+    <h1 class="fw-bold">Our Service Portfolio</h1>
+    <p class="lead">From green-field builds to lifetime maintenance, we cover every mast&nbsp;&amp;&nbsp;tower need.</p>
+  </div>
+</header>
+
+<!-- ─── Service Grid ─────────────────────────────────────────── -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <h2 class="section-title text-center">What We Do</h2><div class="gold-bar"></div>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+
+      <div class="col" data-aos="fade-up" data-aos-delay="50">
+        <div class="service-card h-100">
+          <i class="bi bi-broadcast-pin"></i><div class="divider"></div>
+          <h6 class="fw-semibold">Tower Fabrication &amp; Erection</h6>
+          <p class="small">
+            Design and build of guyed, self-supporting, monopole and rooftop towers
+            (15&nbsp;m – 120&nbsp;m). In-house welding, hot-dip galvanising and on-site erection
+            with certified riggers.
+          </p>
+        </div>
+      </div>
+
+      <div class="col" data-aos="fade-up" data-aos-delay="150">
+        <div class="service-card h-100">
+          <i class="bi bi-lightning-charge-fill"></i><div class="divider"></div>
+          <h6 class="fw-semibold">Lightning &amp; Aviation Systems</h6>
+          <p class="small">
+            Installation of lightning arrestors, earthing grids, and ICAO-compliant
+            medium/low-intensity obstruction lights (LED&nbsp;&amp;&nbsp;solar).
+          </p>
+        </div>
+      </div>
+
+      <div class="col" data-aos="fade-up" data-aos-delay="250">
+        <div class="service-card h-100">
+          <i class="bi bi-tools"></i><div class="divider"></div>
+          <h6 class="fw-semibold">Maintenance &amp; Painting</h6>
+          <p class="small">
+            Periodic climb inspections, retightening, guy-wire tensioning, corrosion control,
+            and colour-coded epoxy painting to extend tower life ≥ 25 years.
+          </p>
+        </div>
+      </div>
+
+      <div class="col" data-aos="fade-up" data-aos-delay="350">
+        <div class="service-card h-100">
+          <i class="bi bi-recycle"></i><div class="divider"></div>
+          <h6 class="fw-semibold">Dismantling &amp; Relocation</h6>
+          <p class="small">
+            Safe dismantling of obsolete structures, sectional packaging, transport logistics,
+            and precise re-erection at a new site with structural integrity certificates.
+          </p>
+        </div>
+      </div>
+
+      <div class="col" data-aos="fade-up" data-aos-delay="450">
+        <div class="service-card h-100">
+          <i class="bi bi-truck"></i><div class="divider"></div>
+          <h6 class="fw-semibold">Temporary / Mobile Masts</h6>
+          <p class="small">
+            Rapid-deploy steel or aluminium masts (up to 30&nbsp;m) on trailers – perfect for events,
+            disaster response or coverage testing.
+          </p>
+        </div>
+      </div>
+
+      <div class="col" data-aos="fade-up" data-aos-delay="550">
+        <div class="service-card h-100">
+          <i class="bi bi-brightness-high-fill"></i><div class="divider"></div>
+          <h6 class="fw-semibold">Solar &amp; Electric Street-Light Poles</h6>
+          <p class="small">
+            Design, manufacture and installation of standalone PV or grid-tied street-lights,
+            including luminaire supply and smart controllers.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Process Timeline ─────────────────────────────────────── -->
+<section class="py-5">
+  <div class="container">
+    <h2 class="section-title text-center">Our Delivery Process</h2><div class="gold-bar"></div>
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+
+        <div class="timeline-step" data-aos="fade-right">
+          <span class="timeline-dot">1</span>
+          <h6 class="fw-semibold">Site Survey &amp; Soil Test</h6>
+          <p class="small">Topography analysis, wind-load data, and geotechnical investigation.</p>
+        </div>
+
+        <div class="timeline-step mt-4" data-aos="fade-right" data-aos-delay="100">
+          <span class="timeline-dot">2</span>
+          <h6 class="fw-semibold">Engineering &amp; Design</h6>
+          <p class="small">AutoCAD / STAAD-Pro structural design, PE stamps and client approval.</p>
+        </div>
+
+        <div class="timeline-step mt-4" data-aos="fade-right" data-aos-delay="200">
+          <span class="timeline-dot">3</span>
+          <h6 class="fw-semibold">Fabrication &amp; Galvanising</h6>
+          <p class="small">CNC cutting, submerged-arc welding, ISO 1461 hot-dip galvanising.</p>
+        </div>
+
+        <div class="timeline-step mt-4" data-aos="fade-right" data-aos-delay="300">
+          <span class="timeline-dot">4</span>
+          <h6 class="fw-semibold">Foundation &amp; Erection</h6>
+          <p class="small">Steel template setting, concrete pouring, tower stacking &amp; guy tension.</p>
+        </div>
+
+        <div class="timeline-step mt-4" data-aos="fade-right" data-aos-delay="400">
+          <span class="timeline-dot">5</span>
+          <h6 class="fw-semibold">Commissioning / Handover</h6>
+          <p class="small">As-built drawings, lightning test, integrity report and client sign-off.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Call-to-Action ────────────────────────────────────────── -->
+<section class="py-5 text-white text-center" style="background:var(--brand-red-light)">
+  <div class="container" data-aos="zoom-in">
+    <h3 class="fw-bold mb-3">Let’s Build Something Great Together</h3>
+    <p class="mb-4">Talk to our engineering team for a free, no-obligation quotation.</p>
+    <a href="contact.html" class="btn btn-light btn-lg">Request a Quote</a>
+  </div>
+</section>
+
+<!-- ▼ Footer injected at runtime -->
+<div id="footer-placeholder"></div>
+
+<!-- ─── Back-to-Top Button ────────────────────────────────────── -->
+<button id="backTop" aria-label="Back to top">
+  <i class="bi bi-arrow-up-short fs-3"></i>
+</button>
+
+<!-- ─── Core JS ──────────────────────────────────────────────── -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+
+<!-- ─── Tiny Helpers (navbar + back-to-top) ──────────────────── -->
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+  /* AOS */
+  AOS.init({ once:true });
+
+  /* Back-to-top & navbar shadow */
+  const backTop=document.getElementById('backTop');
+  window.addEventListener('scroll',()=>{
+    backTop.classList.toggle('show', window.scrollY>300);
+    document.querySelector('.navbar')?.classList.toggle('scrolled', window.scrollY>20);
+  });
+  backTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+});
+</script>
+
+<!-- Optional dynamic nav/footer loader -->
+<script type="module" src="assets/js/includes.js"></script>
+</body>
+</html>

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mast Master | Reliable Tower Solutions</title>
+
+<!-- Bootstrap & Icons -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+<!-- Fonts & Animations -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" rel="stylesheet">
+
+<style>
+/* ─── Brand Palette ─────────────────────────────────────────────── */
+:root{
+  --brand-red:#d62828;
+  --brand-red-light:#ec5050;
+  --brand-dark:#141414;
+  --brand-gold:#d4af37;
+}
+
+/* ─── Base ──────────────────────────────────────────────────────── */
+body{
+  font-family:'Poppins',system-ui,sans-serif;
+  scroll-behavior:smooth;
+  color:#333;
+  min-width:320px; /* prevents 300-px safari zoom quirk */
+}
+a{transition:color .2s, background-color .2s, opacity .2s}
+
+/* ─── Navbar ────────────────────────────────────────────────────── */
+.navbar{
+  background:var(--brand-red);
+  transition:box-shadow .3s;
+}
+.navbar.scrolled{box-shadow:0 2px 6px rgba(0,0,0,.25)}
+
+/* ─── Buttons ───────────────────────────────────────────────────── */
+.btn-brand{
+  background:var(--brand-red);
+  border-color:var(--brand-red);
+  color:#fff;
+}
+.btn-brand:hover{
+  background:var(--brand-red-light);
+  border-color:var(--brand-red-light);
+}
+
+/* ─── Section Titles ────────────────────────────────────────────── */
+.section-title{
+  font-weight:700;
+  color:var(--brand-red);
+  margin-bottom:2rem;
+  font-size:clamp(1.5rem, 1.2rem + 1vw, 2rem);
+}
+.gold-bar{
+  width:60px;
+  height:4px;
+  background:var(--brand-gold);
+  margin:0 auto 1rem;
+}
+
+/* ─── Hero ──────────────────────────────────────────────────────── */
+.hero{
+  min-height:92vh;
+  background:url('images/hero.webp') center/cover no-repeat;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  color:#fff;
+  position:relative;
+}
+.hero::before{
+  content:"";
+  position:absolute; inset:0;
+  background:linear-gradient(135deg,rgba(20,20,20,.8),rgba(214,40,40,.55));
+  z-index:0;
+}
+.hero>*{position:relative; z-index:1}
+.hero h1{
+  font-size:clamp(2rem, 1.5rem + 3vw, 3.25rem);
+  line-height:1.15;
+}
+.hero .lead{
+  font-size:clamp(1rem, .9rem + .5vw, 1.25rem);
+}
+
+/* ─── Cards & Gallery ───────────────────────────────────────────── */
+.service-card{
+  border-radius:12px;
+  padding:2rem;
+  text-align:center;
+  background:#fff;
+  transition:transform .3s, box-shadow .3s;
+  box-shadow:0 2px 6px rgba(0,0,0,.08);
+}
+@media (max-width:575.98px){
+  .service-card{padding:1.5rem}
+}
+.service-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 12px 24px rgba(0,0,0,.15);
+}
+.service-card i{
+  font-size:2rem;
+  color:var(--brand-red);
+}
+.service-card .divider{
+  height:3px; width:40px;
+  background:var(--brand-gold);
+  margin:1rem auto;
+}
+/* gallery images */
+.gallery-img{
+  aspect-ratio:3/4;
+  object-fit:cover;
+  width:100%;
+  border-radius:.5rem;
+  transition:transform .3s;
+  cursor:pointer;
+}
+.gallery-img:hover{transform:scale(1.03)}
+
+/* ─── Footer ────────────────────────────────────────────────────── */
+footer{
+  background:var(--brand-dark);
+  color:#ddd;
+}
+footer a{text-decoration:none; color:#fff}
+
+/* ─── Back-to-top ───────────────────────────────────────────────── */
+#backTop{
+  position:fixed; bottom:24px; right:24px;
+  background:var(--brand-red); color:#fff;
+  border:none; width:46px; height:46px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  box-shadow:0 4px 12px rgba(0,0,0,.3);
+  opacity:0; visibility:hidden; transition:.3s;
+  z-index:999;
+}
+#backTop.show{opacity:1; visibility:visible}
+
+/* ─── Misc ──────────────────────────────────────────────────────── */
+.size{font-size:27px;} /* left untouched in case used elsewhere */
+</style>
+</head>
+<body>
+
+<!-- ▼ Header (navbar) injected at runtime -->
+<div id="header-placeholder"></div>
+
+<!-- ─── Hero ────────────────────────────────────────────────────── -->
+<header class="hero">
+  <div class="container" data-aos="zoom-in">
+    <h1 class="fw-bold">Welcome to Mast Master &amp; Towers<br class="d-none d-md-block"></h1>
+    <p class="lead mb-4">Fabrication&nbsp;&bullet;&nbsp;Erection&nbsp;&bullet;&nbsp;Maintenance Nationwide</p>
+    <a href="contact.html" class="btn btn-lg btn-brand shadow">📞 Contact Us Now</a>
+  </div>
+</header>
+
+<!-- ─── About Preview ───────────────────────────────────────────── -->
+<section class="py-5">
+  <div class="container text-center">
+    <h2 class="section-title">About&nbsp;Us</h2><div class="gold-bar"></div>
+    <p class="mx-auto" style="max-width:760px" data-aos="fade-up">
+      Mast Master &amp; Tower Company Ltd is a proudly Nigerian-owned company at the forefront of the masts
+      and towers industry. With a strong foundation built on engineering excellence and industry expertise,
+      we specialize in delivering cutting-edge solutions for the design, fabrication, installation and
+      maintenance of masts and towers across Nigeria and beyond.
+    </p>
+    <a href="about.html" class="btn btn-outline-dark mt-3">Learn More</a>
+  </div>
+</section>
+
+<!-- ─── Services Preview ────────────────────────────────────────── -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <h2 class="section-title text-center">Core Services</h2><div class="gold-bar"></div>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <div class="col" data-aos="fade-up" data-aos-delay="50">
+        <div class="service-card h-100">
+          <i class="bi bi-broadcast-pin"></i><div class="divider"></div>
+          <h6 class="fw-semibold">Fabrication &amp; Erection</h6>
+          <p class="small">Guyed, self-supporting and monopole towers engineered for durability.</p>
+        </div>
+      </div>
+      <div class="col" data-aos="fade-up" data-aos-delay="150">
+        <div class="service-card h-100">
+          <i class="bi bi-tools"></i><div class="divider"></div>
+          <h6 class="fw-semibold">Maintenance &amp; Painting</h6>
+          <p class="small">Climbing inspections, rust-proofing &amp; safety upgrades.</p>
+        </div>
+      </div>
+      <div class="col" data-aos="fade-up" data-aos-delay="250">
+        <div class="service-card h-100">
+          <i class="bi bi-lightning-charge-fill"></i><div class="divider"></div>
+          <h6 class="fw-semibold">Lightning &amp; Aviation</h6>
+          <p class="small">ICAO-compliant obstruction lights &amp; lightning protection.</p>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mt-4">
+      <a href="services.html" class="btn btn-outline-dark">View All Services</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Projects Preview ───────────────────────────────────────── -->
+<section class="py-5">
+  <div class="container">
+    <h2 class="section-title text-center">Recent Projects</h2><div class="gold-bar"></div>
+    <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-3 justify-content-center" data-aos="fade-up">
+      <!-- Replace images – use srcset for hi-DPI / lazy loading -->
+      <div class="col">
+        <a href="images/mast1@2x.jpeg" class="glightbox" data-gallery="gal">
+          <img src="images/mast1.jpeg"
+               srcset="images/mast1.jpeg 1x, images/mast1@2x.jpeg 2x"
+               class="gallery-img" loading="lazy" alt="Tower project 1">
+        </a>
+      </div>
+      <div class="col">
+        <a href="images/mast2@2x.jpeg" class="glightbox" data-gallery="gal">
+          <img src="images/mast2.jpeg"
+               srcset="images/mast2.jpeg 1x, images/mast2@2x.jpeg 2x"
+               class="gallery-img" loading="lazy" alt="Tower project 2">
+        </a>
+      </div>
+      <div class="col">
+        <a href="images/mast3@2x.jpeg" class="glightbox" data-gallery="gal">
+          <img src="images/mast3.jpeg"
+               srcset="images/mast3.jpeg 1x, images/mast3@2x.jpeg 2x"
+               class="gallery-img" loading="lazy" alt="Tower project 3">
+        </a>
+      </div>
+      <div class="col">
+        <a href="images/mast4@2x.jpeg" class="glightbox" data-gallery="gal">
+          <img src="images/mast4.jpeg"
+               srcset="images/mast4.jpeg 1x, images/mast4@2x.jpeg 2x"
+               class="gallery-img" loading="lazy" alt="Tower project 4">
+        </a>
+      </div>
+    </div>
+    <div class="text-center mt-4">
+      <a href="projects.html" class="btn btn-outline-dark">See Full Gallery</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Safety CTA ─────────────────────────────────────────────── -->
+<section class="py-5 text-white text-center" style="background:var(--brand-red-light)">
+  <div class="container" data-aos="zoom-in">
+    <h3 class="fw-bold mb-3">Rainy Season Inspection</h3>
+    <p class="mb-4">Prevent tower failure – schedule a full climbing inspection today.</p>
+    <a href="safety.html" class="btn btn-light btn-lg">Learn More</a>
+  </div>
+</section>
+
+<!-- ─── Contact Preview ────────────────────────────────────────── -->
+<section class="py-5 bg-light">
+  <div class="container text-center">
+    <h2 class="section-title">Quick Contact</h2><div class="gold-bar"></div>
+    <p class="mb-3">Ready to discuss your project? Reach us anytime.</p>
+    <a href="contact.html" class="btn btn-brand btn-lg">Open Contact Page</a>
+  </div>
+</section>
+
+<!-- ▼ Footer injected at runtime -->
+<div id="footer-placeholder"></div>
+
+<!-- ─── Back-to-top button ─────────────────────────────────────── -->
+<button id="backTop" aria-label="Back to top">
+  <i class="bi bi-arrow-up-short fs-3"></i>
+</button>
+
+<!-- ─── Core JS libs ───────────────────────────────────────────── -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+
+<!-- ─── Tiny helpers (navbar shadow + back-to-top) ─────────────── -->
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+  /* AOS */
+  AOS.init({ once:true });
+
+  /* Glightbox */
+  GLightbox({ touchNavigation:true, loop:true });
+
+  /* Back to top */
+  const backTop = document.getElementById('backTop');
+  window.addEventListener('scroll',()=> {
+    backTop.classList.toggle('show', window.scrollY > 300);
+    document.querySelector('.navbar')?.classList.toggle('scrolled', window.scrollY > 20);
+  });
+  backTop.addEventListener('click', ()=> window.scrollTo({top:0,behavior:'smooth'}));
+});
+</script>
+
+<!-- ─── Optional: dynamic nav/footer injection ─────────────────── -->
+<script type="module" src="assets/js/includes.js"></script>
+</body>
+</html>

@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Projects | Mast Master &amp; Tower Construction Co. Ltd</title>
+
+<!-- Bootstrap & Icons -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+<!-- Fonts, AOS & GLightbox -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" rel="stylesheet">
+
+<style>
+/* ─── Brand Palette ───────────────────────────────────────────── */
+:root{
+  --brand-red:#d62828;
+  --brand-red-light:#ec5050;
+  --brand-dark:#141414;
+  --brand-gold:#d4af37;
+}
+
+/* ─── Base ────────────────────────────────────────────────────── */
+body{
+  font-family:'Poppins',system-ui,sans-serif;
+  color:#333;
+  scroll-behavior:smooth;
+  min-width:320px;
+}
+
+/* ─── Navbar ──────────────────────────────────────────────────── */
+.navbar{
+  background:var(--brand-red);
+  transition:box-shadow .3s;
+}
+.navbar.scrolled{box-shadow:0 2px 6px rgba(0,0,0,.25)}
+
+/* ─── Hero ───────────────────────────────────────────────────── */
+.hero{
+  min-height:60vh;
+  background:url("images/projects-banner-compressed.webp") center/cover no-repeat;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  color:#fff;
+  position:relative;
+}
+.hero::before{
+  content:"";
+  position:absolute; inset:0;
+  background:rgba(0,0,0,.55);
+  z-index:0;
+}
+.hero>*{position:relative; z-index:1}
+.hero h1{
+  font-size:clamp(2rem, 1.5rem + 2vw, 3rem);
+  line-height:1.15;
+}
+.hero .lead{
+  font-size:clamp(1rem, .9rem + .4vw, 1.25rem);
+}
+
+/* ─── Section Titles ─────────────────────────────────────────── */
+.section-title{
+  color:var(--brand-red);
+  font-weight:700;
+  margin-bottom:2rem;
+  font-size:clamp(1.5rem, 1.2rem + 1vw, 2rem);
+}
+.gold-bar{
+  width:60px;
+  height:4px;
+  background:var(--brand-gold);
+  margin:0 auto 1rem;
+}
+
+/* ─── Sticky Filter Chips (optional) ─────────────────────────── */
+#filterBar{
+  top:70px;
+  background:#fff;
+  z-index:1020;
+  border-bottom:1px solid #eee;
+}
+.filter-btn{
+  border:1px solid var(--brand-red);
+  color:var(--brand-red);
+  background:#fff;
+  margin:.25rem;
+  padding:.4rem 1rem;
+  border-radius:30px;
+  font-size:.9rem;
+  cursor:pointer;
+  transition:.25s;
+}
+.filter-btn.active,
+.filter-btn:hover{
+  background:var(--brand-red);
+  color:#fff;
+}
+
+/* ─── Masonry Grid ───────────────────────────────────────────── */
+#projectGrid{column-gap:1.25rem}
+@media (min-width:576px){#projectGrid{column-count:2}}
+@media (min-width:992px){#projectGrid{column-count:3}}
+
+.project-item{
+  display:inline-block;
+  width:100%;
+  margin:0 0 1.25rem;
+  opacity:0;
+  transform:scale(.95);
+  transition:.35s;
+}
+.project-item.show{opacity:1;transform:scale(1)}
+.project-item.hide{display:none !important;}
+
+.project-thumb{
+  position:relative;
+  border-radius:.6rem;
+  overflow:hidden;
+  background:#ddd;
+}
+.project-thumb::after{
+  content:"";
+  position:absolute; inset:0;
+  background:rgba(0,0,0,.55);
+  opacity:0;
+  transition:.3s;
+}
+.project-thumb:hover::after{opacity:1}
+.project-thumb img{
+  width:100%;
+  display:block;
+  aspect-ratio:3/4;
+  object-fit:cover;
+  filter:blur(8px);
+  transition:filter .4s;
+}
+.project-thumb img.loaded{filter:blur(0)}
+
+.project-caption{
+  position:absolute; inset:0;
+  display:flex; align-items:center; justify-content:center;
+  color:#fff;
+  opacity:0;
+  transition:.3s;
+  text-align:center;
+  padding:0 1rem;
+  font-size:.9rem;
+}
+.project-thumb:hover .project-caption{opacity:1}
+
+/* ─── Footer ─────────────────────────────────────────────────── */
+footer{
+  background:var(--brand-dark);
+  color:#ddd;
+}
+footer a{text-decoration:none; color:#fff}
+
+/* ─── Back-to-Top ────────────────────────────────────────────── */
+#backTop{
+  position:fixed; bottom:24px; right:24px;
+  width:46px; height:46px; border:none; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  background:var(--brand-red); color:#fff;
+  box-shadow:0 4px 12px rgba(0,0,0,.3);
+  opacity:0; visibility:hidden; transition:.3s;
+  z-index:999;
+}
+#backTop.show{opacity:1; visibility:visible}
+</style>
+</head>
+<body>
+
+<!-- ▼ Header (navbar) injected at runtime -->
+<div id="header-placeholder"></div>
+
+<!-- ─── Hero Banner ──────────────────────────────────────────── -->
+<header class="hero">
+  <div class="container" data-aos="fade-down">
+    <h1 class="fw-bold">Project Showcase</h1>
+    <p class="lead">A gallery of towers&nbsp;&amp;&nbsp;masts delivered nationwide</p>
+  </div>
+</header>
+
+<!-- ─── Filter Chips (commented out by default) ──────────────── -->
+<!--
+<div id="filterBar" class="py-2 position-sticky shadow-sm">
+  <div class="container text-center">
+    <button class="filter-btn active" data-filter="all">All&nbsp;<span class="badge bg-light text-dark" id="countAll"></span></button>
+    <button class="filter-btn" data-filter="guyed">Guyed Masts</button>
+    <button class="filter-btn" data-filter="self">Self-Support</button>
+    <button class="filter-btn" data-filter="mono">Monopoles</button>
+    <button class="filter-btn" data-filter="rooftop">Rooftop</button>
+    <button class="filter-btn" data-filter="mobile">Mobile / Temp</button>
+  </div>
+</div>
+-->
+
+<!-- ─── Gallery ──────────────────────────────────────────────── -->
+<section class="py-5">
+  <div class="container">
+    <h2 class="section-title text-center">Our Work</h2><div class="gold-bar"></div>
+    <p class="visually-hidden" aria-live="polite" id="liveCount"></p>
+
+    <div id="projectGrid">
+      <!-- -- Add or duplicate these blocks as needed -- -->
+      <figure class="project-item guyed show" data-category="guyed" data-aos="zoom-in">
+        <a href="images/mast1@2x.jpeg" class="glightbox" data-gallery="mast">
+          <div class="project-thumb">
+            <img src="images/mast1.jpeg"
+                 srcset="images/mast1.jpeg 1x, images/mast1@2x.jpeg 2x"
+                 loading="lazy"
+                 alt="100 m Guyed — Gombe"
+                 onload="this.classList.add('loaded')">
+            <figcaption class="project-caption">100 m Guyed — Gombe</figcaption>
+          </div>
+        </a>
+      </figure>
+
+      <figure class="project-item self show" data-category="self" data-aos="zoom-in" data-aos-delay="50">
+        <a href="images/mast2@2x.jpeg" class="glightbox" data-gallery="mast">
+          <div class="project-thumb">
+            <img src="images/mast2.jpeg"
+                 srcset="images/mast2.jpeg 1x, images/mast2@2x.jpeg 2x"
+                 loading="lazy"
+                 alt="60 m Self-Support — Lagos"
+                 onload="this.classList.add('loaded')">
+            <figcaption class="project-caption">60 m Self-Support — Lagos</figcaption>
+          </div>
+        </a>
+      </figure>
+
+      <figure class="project-item mono show" data-category="mono" data-aos="zoom-in" data-aos-delay="100">
+        <a href="images/mast3@2x.jpeg" class="glightbox" data-gallery="mast">
+          <div class="project-thumb">
+            <img src="images/mast3.jpeg"
+                 srcset="images/mast3.jpeg 1x, images/mast3@2x.jpeg 2x"
+                 loading="lazy"
+                 alt="35 m Monopole — Abuja"
+                 onload="this.classList.add('loaded')">
+            <figcaption class="project-caption">35 m Monopole — Abuja</figcaption>
+          </div>
+        </a>
+      </figure>
+
+      <figure class="project-item rooftop show" data-category="rooftop" data-aos="zoom-in" data-aos-delay="150">
+        <a href="images/mast4@2x.jpeg" class="glightbox" data-gallery="mast">
+          <div class="project-thumb">
+            <img src="images/mast4.jpeg"
+                 srcset="images/mast4.jpeg 1x, images/mast4@2x.jpeg 2x"
+                 loading="lazy"
+                 alt="Rooftop Tower — Ibadan"
+                 onload="this.classList.add('loaded')">
+            <figcaption class="project-caption">Rooftop Tower — Ibadan</figcaption>
+          </div>
+        </a>
+      </figure>
+
+      <figure class="project-item mobile show" data-category="mobile" data-aos="zoom-in" data-aos-delay="200">
+        <a href="images/mast1@2x.jpeg" class="glightbox" data-gallery="mast">
+          <div class="project-thumb">
+            <img src="images/mast1.jpeg"
+                 srcset="images/mast1.jpeg 1x, images/mast1@2x.jpeg 2x"
+                 loading="lazy"
+                 alt="Mobile Mast — Jos Rally"
+                 onload="this.classList.add('loaded')">
+            <figcaption class="project-caption">Mobile Mast — Jos Rally</figcaption>
+          </div>
+        </a>
+      </figure>
+
+      <figure class="project-item self show" data-category="self" data-aos="zoom-in" data-aos-delay="250">
+        <a href="images/mast2@2x.jpeg" class="glightbox" data-gallery="mast">
+          <div class="project-thumb">
+            <img src="images/mast2.jpeg"
+                 srcset="images/mast2.jpeg 1x, images/mast2@2x.jpeg 2x"
+                 loading="lazy"
+                 alt="75 m Self-Support — Enugu"
+                 onload="this.classList.add('loaded')">
+            <figcaption class="project-caption">75 m Self-Support — Enugu</figcaption>
+          </div>
+        </a>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Call-to-Action ───────────────────────────────────────── -->
+<section class="py-5 text-white text-center" style="background:var(--brand-red-light)">
+  <div class="container" data-aos="zoom-in">
+    <h3 class="fw-bold mb-3">Ready to start your own tower project?</h3>
+    <a href="contact.html" class="btn btn-light btn-lg">Request a Quote</a>
+  </div>
+</section>
+
+<!-- ▼ Footer injected at runtime -->
+<div id="footer-placeholder"></div>
+
+<!-- ─── Back-to-Top Button ───────────────────────────────────── -->
+<button id="backTop" aria-label="Back to top">
+  <i class="bi bi-arrow-up-short fs-3"></i>
+</button>
+
+<!-- ─── Core JS ──────────────────────────────────────────────── -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+
+<!-- ─── Page Logic ───────────────────────────────────────────── -->
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+  /* AOS & lightbox */
+  AOS.init({duration:800, once:true});
+  GLightbox({selector:'.glightbox', touchNavigation:true});
+
+  /* Navbar shadow + back-to-top */
+  const backTop=document.getElementById('backTop');
+  window.addEventListener('scroll',()=>{
+    backTop.classList.toggle('show',window.scrollY>300);
+    document.querySelector('.navbar')?.classList.toggle('scrolled',window.scrollY>20);
+  });
+  backTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+  /* Optional filter logic (uncomment filterBar HTML to use) */
+  const btns=document.querySelectorAll('.filter-btn');
+  const items=document.querySelectorAll('.project-item');
+  const live=document.getElementById('liveCount');
+  if(btns.length){
+    const update=()=>{
+      const visible=[...items].filter(i=>!i.classList.contains('hide')).length;
+      live.textContent=`${visible} project${visible!==1?'s':''} displayed`;
+    };
+    btns.forEach(b=>{
+      b.addEventListener('click',()=>{
+        btns.forEach(x=>x.classList.remove('active'));
+        b.classList.add('active');
+        const f=b.dataset.filter;
+        items.forEach(i=>{
+          const show=(f==='all'||i.dataset.category===f);
+          i.classList.toggle('hide',!show);
+        });
+        update();
+      });
+    });
+    update();
+    document.getElementById('countAll')?.textContent=items.length;
+  }
+});
+</script>
+
+<!-- Optional dynamic nav/footer loader -->
+<script type="module" src="assets/js/includes.js"></script>
+</body>
+</html>
